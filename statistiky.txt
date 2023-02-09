@@ -1,0 +1,4 @@
+1.7777: 1 bulls,3 cows
+2.6666: 0 bulls,0 cows
+3.7921: 3 bulls,0 cows
+You guessed the number in 3 attempts!
