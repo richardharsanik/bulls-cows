@@ -32,7 +32,7 @@ def main_game():
     print(number)
     input_number = input_number_func()
     guess_count = 0
-    with open("statistiky.txt", mode='w+') as file:
+    with open("statistiky.txt", mode='w') as file:
         while input_number != number:
             guess_count += 1 
             bull_count = 0
