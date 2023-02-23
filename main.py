@@ -32,7 +32,7 @@ def main_game():
     print("Let's play a bulls and cows game.")
     print("-----------------------------------------------")
     number = random_number()
-    #print(number)##
+    #print(number)#
     used_numbers = []
     input_number = input_number_func(used_numbers)
     guess_count = 0
