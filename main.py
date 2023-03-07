@@ -1,5 +1,5 @@
 # """
-# projekt_1.py: první projekt do Engeto Online Python Akademie
+# projekt_2.py: druhy projekt do Engeto Online Python Akademie
 # author: Richard Harsanik
 # email: richard.harsanik@gmail.com
 # discord: nakazeny#6042
@@ -8,19 +8,22 @@ import random
 import time
 
 def random_number() -> int:
-    num_1 = random.randrange(1000,9999)
+    cisla = list(range(1,10))
+    random.shuffle(cisla)
+    num_1 = "".join(map(str, cisla[:4]))
     return num_1
 
 def input_number_func() -> int:
     while True:
         try:
-            num = int(input("Enter a 4-digit number: "))               
+            num = int(input("Enter a 4-digit number: "))
             if len(str(num)) != 4:
-                 raise ValueError
+                raise ValueError("")
+            if len(set(str(num))) != 4:
+                raise ValueError("Digits must be unique.")
             return num
-        except ValueError:
-            print("Invalid input. Please enter a valid number.")
-
+        except ValueError as err:
+            print(f"Invalid input: {err} Please enter a valid 4-digit number with unique digits.")
 def main_game():
     cas_1 = time.time()
     print("Hi there!")
@@ -33,11 +36,11 @@ def main_game():
     input_number = input_number_func()
     guess_count = 0
     with open("statistiky.txt", mode='w') as file:
-        while input_number != number:
+        while str(input_number) != str(number):
             guess_count += 1 
             bull_count = 0
             cow_count = 0
-            for i in range(4):
+            for i in range(4):   
                 if str(input_number) [i] in str(number) and str(input_number).find(str(number)[i]) == i:
                     bull_count += 1 
                 elif str(input_number)[i] in str(number):
@@ -55,6 +58,6 @@ def main_game():
             print("That's not so good.")
         cas_2 = time.time()
         duration = cas_2 - cas_1
-    print("The game took", duration,"seconds to complete")
+    print(f"The game took {duration:.2f} seconds to complete")
 if __name__ == "__main__":   
     main_game()
