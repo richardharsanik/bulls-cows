@@ -13,7 +13,7 @@ def random_number() -> int:
     num_1 = "".join(map(str, cisla[:4]))
     return num_1
 
-def input_number_func() -> int:
+def input_number_func(used_numbers: list) -> int:
     while True:
         try:
             num = int(input("Enter a 4-digit number: "))
@@ -32,8 +32,9 @@ def main_game():
     print("Let's play a bulls and cows game.")
     print("-----------------------------------------------")
     number = random_number()
-    print(number)
-    input_number = input_number_func()
+    #print(number)3a
+    used_numbers = []
+    input_number = input_number_func(used_numbers)
     guess_count = 0
     with open("statistiky.txt", mode='w') as file:
         while str(input_number) != str(number):
@@ -45,9 +46,10 @@ def main_game():
                     bull_count += 1 
                 elif str(input_number)[i] in str(number):
                     cow_count += 1 
+            used_numbers.append(input_number)
             file.write(f"{guess_count}.{input_number}: {bull_count} bulls,{cow_count} cows\n")    
             print(f"{bull_count}bulls,{cow_count}cows")
-            input_number = input_number_func()
+            input_number = input_number_func(used_numbers)
         file.write(f"You guessed the number in {guess_count} attempts!")
         print("Correct, you've guessed the right number in", guess_count, "guesses!")
         if guess_count <= 5:
@@ -61,3 +63,4 @@ def main_game():
     print(f"The game took {duration:.2f} seconds to complete")
 if __name__ == "__main__":   
     main_game()
+
